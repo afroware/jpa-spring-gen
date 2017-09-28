@@ -1,12 +1,12 @@
-# Jpa Spring Generator [![Build Status](https://travis-ci.org/afroware/jpa-spring-generator.svg?branch=master)](https://travis-ci.org/afroware/jpa-spring-generator) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.afroware/jpa-spring-generator/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.afroware/jpa-spring-generator)
+# Jpa Spring Data Generator [![Build Status](https://travis-ci.org/afroware/jpa-spring-generator.svg?branch=master)](https://travis-ci.org/afroware/jpa-spring-generator) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.afroware/jpa-spring-generator/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.afroware/jpa-spring-generator)
 
-Spring Data Generator for JPA repositories and managers.
+JPA Spring Data repositories and managers Generator for JPA.
 
 ## Features ##
 * Generate in Runtime
 * Generate by Plugin
 * Generate repositories for JPA Entities
-* Generate managers for JPA Entities
+* Generate managers and implementation for JPA Entities
 * EntityScan wrapped annotation
 * Overwrite option
 
@@ -21,12 +21,12 @@ Download the jar through Maven:
 ```xml
 <dependency>
   <groupId>com.afroware</groupId>
-  <artifactId>jpa-spring-generator</artifactId>
-  <version>1.1.3</version>
+  <artifactId>jpa-spring-gen</artifactId>
+  <version>0.0.1</version>
 </dependency>
 ```
 
-The simple Spring Data JPA configuration with Java-Config looks like this: 
+The simple JPA Spring Data  configuration with Java-Config looks like this: 
 ```java
 @SDGenerator(
         entityPackage = "com.example.model",
@@ -99,11 +99,11 @@ Download the jar through Maven:
 
 #### Generate repositories (terminal)
 ```
-$ mvn jpa-spring-generator:repositories
+$ mvn jpa-spring-gen:repositories
 ```
 #### Generate managers (terminal)
 ```
-$ mvn jpa-spring-generator:managers
+$ mvn jpa-spring-gen:managers
 ```
 
 ## Example ##
@@ -139,8 +139,18 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 Generate a manager class example in `com.example.managers`:
 
 ```java
+
+public Interface AccountManager {
+    
+   public Long count ();
+   
+   .
+   .
+   .
+}
+
 @Component
-public class AccountManager {
+public class AccountManagerImpl  extends AccountManager{
     
     @Autowired
     public AccountManager(AccountRepository accountRepository) {
@@ -148,7 +158,18 @@ public class AccountManager {
     }
    
     private AccountRepository accountRepository;
+    
+    public Long count (){
+    	
+    	return accountRepository.count();
+    }
+    
+    .
+    .
+    .
 }
+
+
 ```
 
 ## Notes ##
