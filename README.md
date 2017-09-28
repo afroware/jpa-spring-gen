@@ -20,7 +20,7 @@ Download the jar through Maven:
 
 ```xml
 <dependency>
-  <groupId>com.cmeza</groupId>
+  <groupId>com.afroware</groupId>
   <artifactId>jpa-spring-generator</artifactId>
   <version>1.1.3</version>
 </dependency>
@@ -29,10 +29,10 @@ Download the jar through Maven:
 The simple Spring Data JPA configuration with Java-Config looks like this: 
 ```java
 @SDGenerator(
-        entityPackage = "com.acme.model",
-        repositoryPackage = "com.acme.repositories",
-        repository-superclass = "CrudRepository",
-        managerPackage = "com.acme.managers",
+        entityPackage = "com.example.model",
+        repositoryPackage = "com.example.repositories",
+        repositorySuperClass = "CrudRepository",
+        managerPackage = "com.example.managers",
         repositoryPostfix = "Repository",
         managerPostfix = "Manager",
         onlyAnnotations = false,
@@ -51,9 +51,10 @@ public class AppConfig {
 
 | Attribute | Required | Default | Description |
 |----------|:-------------:|:------:|------------|
-| entityPackage |  No | [] | Entity scan package |
+| entityPackage |  No | [ ] | Entity scan package |
 | repositoryPackage | No | "" | Package where the repositories will be generated |
 | managerPackage | No | "" | Package where the managers will be generated | 
+| repositorySuperClass | No | "JpaRepository"| Super Class Repository To Extends From .
 | repositoryPostfix | No | "Repository" | Postfix for repositories. example: Account**Repository** |
 | managerPostfix | No | "Manager" | Postfix for managers. example: Account**Manager** |
 | onlyAnnotations | No | false | Scan only classes annotated with @SDGenerate or @SDNoGenerate |
@@ -66,16 +67,16 @@ Download the jar through Maven:
 <build>
 	<plugins>
 		<plugin>
-			<groupId>com.cmeza</groupId>
+			<groupId>com.afroware</groupId>
 			<artifactId>jpa-spring-generator</artifactId>
 			<version>1.1.3</version>
 			<configuration>
 				<entity-package>
-				    <param>com.acme.model</param>
+				    <param>com.example.model</param>
 				</entity-package>
-				<repository-package>com.acme.repository</repository-package>
+				<repository-package>com.example.repository</repository-package>
 				<repository-postfix>Repository</repository-postfix>
-				<manager-package>com.acme.managers</manager-package>
+				<manager-package>com.example.managers</manager-package>
 				<manager-postfix>Manager</manager-postfix>
 				<only-annotations>false</only-annotations>
 				<overwrite>false</overwrite>
@@ -87,9 +88,9 @@ Download the jar through Maven:
 
 | Attribute | Required | Default | Description |
 |----------|:-------------:|:------:|------------|
-| entity-package |  Yes | [] | Entity scan package |
+| entity-package |  Yes | [ ] | Entity scan package |
 | repository-package | Yes | "" | Package where the repositories will be generated |
-| repository-superclass | No | "JpaRepository "| Super Class Repository To Extends From .
+| repository-superclass | No | "JpaRepository"| Super Class Repository To Extends From .
 | manager-package | Yes | "" | Package where the managers will be generated | 
 | repository-postfix | No | "Repository" | Postfix for repositories. example: Account**Repository** |
 | manager-postfix | No | "Manager" | Postfix for managers. example: Account**Manager** |
@@ -107,7 +108,7 @@ $ mvn jpa-spring-generator:managers
 
 ## Example ##
 
-Sample entity in `com.acme.model`
+Sample entity in `com.example.model`
 
 ```java
 @Entity
@@ -127,7 +128,7 @@ public class Account {
 }
 ```
 
-Generate a repository interface example in `com.acme.repositories`:
+Generate a repository interface example in `com.example.repositories`:
 
 ```java
 @Repository
@@ -135,7 +136,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 }
 ```
 
-Generate a manager class example in `com.acme.managers`:
+Generate a manager class example in `com.example.managers`:
 
 ```java
 @Component

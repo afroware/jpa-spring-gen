@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.afroware</groupId>
 	<artifactId>jpa-spring-gen</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>JPA Spring Data Generator</name>
 	<description>Generate Spring  Repository And Manager From JPA Model Entity </description>
 	<url>https://github.com/afroware/jpa-spring-generator</url>
